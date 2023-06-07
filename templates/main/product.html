@@ -1,0 +1,24 @@
+<main>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for i in products %}
+                <div class="col">
+                    <div class="card shadow-sm text-bg-dark">
+                        <img class="bd-placeholder-img card-img-top" width="30%" src="{{ i.image.url }}" focusable="false">
+                        <div class="card-body">
+                            <h1 class="card-text">{{ i.title }}</h1>
+                            <h4 class="card-text">Категория: {{ i.category }}</h4>
+                            <p class="card-text">{{ i.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="card-text">Цена: {{ i.price }}</p>
+                                <small class="text-body-secondary">{{ i.created_at }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>

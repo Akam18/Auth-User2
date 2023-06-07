@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form class="text-bg-dark" method="post" style="border-radius: 15px; padding: 20px;">
+        {% csrf_token %}
+        <div class="input-group" style="margin: 20px; width: 1190px;">
+            <span class="input-group-text">First & last name</span>
+            {{ form.first_name }}
+            {{ form.last_name }}
+        </div>
+        <div class="input-group flex-nowrap" style="margin: 20px; width: 1190px;">
+            <span class="input-group-text" id="addon-wrapping">@username</span>
+            {{ form.username }}
+        </div>
+        <div class="input-group mb-3" style="margin: 20px; width: 1190px;">
+            <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+            {{ form.email }}
+        </div>
+        <div class="input-group mb-3" style="margin: 20px; width: 1190px;">
+            <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
+            {{ form.password }}
+        </div>
+        <div class="input-group mb-3" style="margin: 20px; width: 1190px;">
+            <span class="input-group-text" id="inputGroup-sizing-default">Repeat password</span>
+            <input type="password" name="password2" class="form-control text-bg-dark" aria-label="Password" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 20px; width: 1190px">
+            <a href="/" type="button" class="btn btn-outline-danger">Back</a>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+<!-- "first_name", "last_name", "username", "email", "password" -->

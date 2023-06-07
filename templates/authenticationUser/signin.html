@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Authorization{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form class="card shadow-sm text-bg-dark" method="post" style="width: 1240px; border-radius: 24px; margin: 30px;"
+    enctype="multipart/form-data">
+     
+        {% csrf_token %}
+        <div class="input-group flex-nowrap" style="margin: 20px; width: 1190px;">
+            <span class="input-group-text" id="addon-wrapping">@</span>
+            <input type="text" name="username"  class="form-control text-bg-dark" aria-describedby="addon-wrapping" aria-label="Username" placeholder="Username" required>
+        </div>
+
+        <div class="input-group mb-3" style="margin: 20px; width: 1190px;">
+            <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
+            <input type="password" name="password" class="form-control text-bg-dark" aria-label="Password" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 20px; width: 1190px">
+            <a href="/" type="button" class="btn btn-outline-danger">Back</a>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+<!-- "username", "password" -->
