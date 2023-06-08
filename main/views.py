@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Category, Product, Profile
-from main.forms import ProductForm, CategoryForm, UserForm
+from main.forms import ProductForm, CategoryForm, UserForm, ProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
@@ -109,7 +109,28 @@ def SignInUserView(request):
 def UserProfileView(request):
         profile = Profile.objects.all()
         return render(request, 'Profile/profile.html', {'profile': profile})
-    
+
+def UserEditProfileView(request):
+    if request.user.is_authenticated:
+        profile = Profile.objects.all()
+        user = request.user.profile
+        if request.method == 'POST':
+            form = ProfileForm(request.POST, request.FILES, instance=user)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Редактирование прошла успенно!")
+                return redirect('/profile')
+        else:
+            form = ProfileForm(instance=user)
+        
+        context = {
+            'form': form,
+            'profile': profile,
+                    }
+
+        return render(request, 'Profile/editprofile.html', context=context)
+    else:
+        return redirect('/signin') 
     
 
 

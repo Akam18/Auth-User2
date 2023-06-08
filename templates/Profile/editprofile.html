@@ -5,22 +5,25 @@
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
-{% block title %}Профиль{% endblock %}
+
+{% block title %}Обновить Профиль{% endblock %}
 
 {% block content %}
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-6 mb-4 mb-lg-0">
             <div class="card mb-3" style="border-radius: .5rem;">
-                {% for profile in profile %}
                 <div class="row g-0">
                     <div class="col-md-4 gradient-custom text-center text-white"
                         style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                        {% if profile.image %}
+                        {% if profile.image.url %}
                         <img src="{{ profile.image.url }}" alt="Avatar" class="img-fluid my-5" style="border-radius: 50%; width: 120px; margin: 50px;" />
                         {% else %}
                         <img src="{% static 'img/anime.jpg' %}" alt="Avatar" class="img-fluid my-5" style="border-radius: 50%; width: 120px; margin: 50px;" />
                         {% endif %}
+                        {{ form.image }}
                         <h5>{{ user.first_name }} {{ user.last_name }}</h5>
                         <p><b>Username:</b> {{ user.username }}</p>
                         <i class="far fa-edit mb-5"></i>
@@ -36,49 +39,38 @@
                                 </div>
                                 <div class="col-6 mb-3">
                                     <h6>Phone</h6>
-                                    <p class="text-muted">{{ profile.phone }}</p>
-                                    {% if profile.phone %}
-                                    {% else %}
-                                    <p class="text-muted">Not phone number</p>
-                                    {% endif %}
+                                    <p class="text-muted">{{ form.phone }}</p>
                                 </div>
                             </div>
-                            <!-- <h6>Projects</h6> -->
-                            <hr class="mt-0 mb-4">
+                            <!-- <h6>Information</h6>
+                            <hr class="mt-0 mb-4"> -->
                             <div class="row pt-1">
                                 <div class="col-6 mb-3">
                                     <h6>About</h6>
-                                    {% if profile.description %}
-                                    <p class="text-muted">{{ profile.description }}</p>
-                                    {% else %}
-                                    <p class="text-muted">Not information</p>
-                                    {% endif %}
+                                    <p class="text-muted">{{ form.description }}</p>
                                 </div>
                                 <div class="col-6 mb-3">
-                                    <h6>Birth</h6>
-                                    {% if profile.birth_data %}
-                                    <p class="text-muted">{{ profile.birth_data }}</p>
-                                    {% else %}
-                                    <p class="text-muted">Not birth data</p>
-                                    {% endif %}
+                                    <h6>Birth data</h6>
+                                    <p class="text-muted">{{ form.birth_data }}</p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
                                 <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                                <a href="#!"><i class="bi bi-instagram"></i></i></a>
+                                <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
 </div>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin: 20px; width: 1190px">
-    <a href="/" type="button" class="btn btn-outline-light">Back</a>
-    <a href="/profile/edit" type="button" class="btn btn-success">Edit Profile</a>
+    <a href="/profile" type="button" class="btn btn-outline-light">Back</a>
+    <a href="/profile">
+        <button class="btn btn-success" type="submit">Save</button>
+    </a>
 </div>
-
+</form>
 {% endblock %}
