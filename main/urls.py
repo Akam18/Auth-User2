@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from .views import IndexView, AddProductView, ProductView, IndexView, CategoryView, \
-LogoutUserView, SingUpUserView, SignInUserView, UserProfileView, UserEditProfileView
+LogoutUserView, SingUpUserView, SignInUserView, UserProfileView, UserEditProfileView, \
+SettingsView
 
 urlpatterns = [
     path('', IndexView),
@@ -13,4 +14,5 @@ urlpatterns = [
     path("logout/", LogoutUserView),
     path('profile/', UserProfileView),
     path('profile/edit/', UserEditProfileView),
+    path('settings/', SettingsView),
 ]

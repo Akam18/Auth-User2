@@ -12,12 +12,12 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-6 mb-4 mb-lg-0">
             <div class="card mb-3" style="border-radius: .5rem;">
-                {% for profile in profile %}
+            
                 <div class="row g-0">
                     <div class="col-md-4 gradient-custom text-center text-white"
                         style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                        {% if profile.image %}
-                        <img src="{{ profile.image.url }}" alt="Avatar" class="img-fluid my-5" style="border-radius: 50%; width: 120px; margin: 50px;" />
+                        {% if user.profile.image %}
+                        <img src="{{ user.profile.image.url }}" alt="Avatar" class="img-fluid my-5" style="border-radius: 50%; width: 120px; margin: 50px;" />
                         {% else %}
                         <img src="{% static 'img/anime.jpg' %}" alt="Avatar" class="img-fluid my-5" style="border-radius: 50%; width: 120px; margin: 50px;" />
                         {% endif %}
@@ -36,8 +36,8 @@
                                 </div>
                                 <div class="col-6 mb-3">
                                     <h6>Phone</h6>
-                                    <p class="text-muted">{{ profile.phone }}</p>
-                                    {% if profile.phone %}
+                                    {% if user.profile.phone %}
+                                    <p class="text-muted">{{ user.profile.phone }}</p>
                                     {% else %}
                                     <p class="text-muted">Not phone number</p>
                                     {% endif %}
@@ -48,16 +48,16 @@
                             <div class="row pt-1">
                                 <div class="col-6 mb-3">
                                     <h6>About</h6>
-                                    {% if profile.description %}
-                                    <p class="text-muted">{{ profile.description }}</p>
+                                    {% if user.profile.description %}
+                                    <p class="text-muted">{{ user.profile.description }}</p>
                                     {% else %}
                                     <p class="text-muted">Not information</p>
                                     {% endif %}
                                 </div>
                                 <div class="col-6 mb-3">
                                     <h6>Birth</h6>
-                                    {% if profile.birth_data %}
-                                    <p class="text-muted">{{ profile.birth_data }}</p>
+                                    {% if user.profile.birth_data %}
+                                    <p class="text-muted">{{ user.profile.birth_data }}</p>
                                     {% else %}
                                     <p class="text-muted">Not birth data</p>
                                     {% endif %}
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                
             </div>
         </div>
     </div>

@@ -1,6 +1,9 @@
-from django.forms import ModelForm, TextInput, Textarea, Select, FileInput, EmailInput, PasswordInput, DateInput
+from django import forms
+from django.forms import ModelForm, TextInput, Textarea, Select, FileInput,\
+    EmailInput, PasswordInput, DateInput
 from .models import Category, Product, Profile
 from django.contrib.auth.models import User
+
 
 class UserForm(ModelForm):
     class Meta:
@@ -80,8 +83,6 @@ class ProductForm(ModelForm):
         }
 
 class ProfileForm(ModelForm):
-    # user = forms.ModelChoiceField(queryset=User.objects.all())
-    
     class Meta:
         model = Profile
         fields = ['image', 'description', 'birth_data', 'phone']
@@ -98,7 +99,7 @@ class ProfileForm(ModelForm):
             }),
             'birth_data': DateInput(attrs={
                 'class': 'form-control',
-                'type': 'date',
+                'min': '1900-01-01',
                 'placeholder': 'Дата рождения',
             }),
             'phone': TextInput(attrs={
@@ -106,3 +107,4 @@ class ProfileForm(ModelForm):
                 'placeholder': 'Номер телефона',
             })
         }
+
